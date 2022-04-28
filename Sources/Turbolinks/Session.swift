@@ -146,6 +146,12 @@ open class Session: NSObject {
             topmostVisit = currentVisit
         }
     }
+	
+    open func releaseResources() {
+ 	activatedVisitable = nil
+ 	currentVisit = nil
+ 	topmostVisit = nil    
+    }
 
     // MARK: Visitable activation
 
