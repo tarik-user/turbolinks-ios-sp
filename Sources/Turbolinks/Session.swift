@@ -375,7 +375,7 @@ extension Session: WebViewDelegate {
 extension Session: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> ()) {
         let navigationDecision = NavigationDecision(navigationAction: navigationAction)
-        let isSubmitRequest = (navigationAction.request.httpMethod != "GET") && (navigationAction.navigationType == .formSubmitted || navigationAction.navigationType == .formResubmitted)
+        let isSubmitRequest = (navigationAction.navigationType == .formSubmitted || navigationAction.navigationType == .formResubmitted)
         
         if let webView = webView as? WebView {
             webView.isSubmitRequest = isSubmitRequest
@@ -383,13 +383,20 @@ extension Session: WKNavigationDelegate {
 
         if isSubmitRequest {
             decisionHandler(.allow)
+
+            // redirect after form submit
+            if let url = navigationAction.request.url,
+                ((navigationAction.request.httpMethod == "GET") && (navigationAction.targetFrame?.request.url != navigationAction.request.url)) {
+                delegate?.session(self, didProposeVisitToURL: url, withAction: Action.Replace)
+            }
         } else {
             let processingURL = (navigationAction.navigationType == .linkActivated || navigationDecision.isMainFrameNavigation) ? navigationAction.request.url : nil
             if performPreprocessing(currentVisit, URL: processingURL) {
                 decisionHandler(.cancel)
             } else {
                 let URL = navigationDecision.externallyOpenableURL
-                if let url = URL, (delegate?.session(self, isLocalURL: url) == true) {
+                if let url = URL,
+                    (delegate?.session(self, isLocalURL: url) == true) {
                     decisionHandler(.allow)
                     delegate?.session(self, didProposeVisitToURL: url, withAction: Action.Advance)
                 } else {
