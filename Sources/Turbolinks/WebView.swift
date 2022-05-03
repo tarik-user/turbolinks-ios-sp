@@ -1,16 +1,16 @@
 import WebKit
 
-public protocol WebViewDelegate: class {
+public protocol WebViewDelegate: AnyObject {
     func webView(_ webView: WebView, didProposeVisitToLocation location: URL, withAction action: Action)
     func webViewDidInvalidatePage(_ webView: WebView)
     func webView(_ webView: WebView, didFailJavaScriptEvaluationWithError error: NSError)
 }
 
-public protocol WebViewPageLoadDelegate: class {
+public protocol WebViewPageLoadDelegate: AnyObject {
     func webView(_ webView: WebView, didLoadPageWithRestorationIdentifier restorationIdentifier: String)
 }
 
-public protocol WebViewVisitDelegate: class {
+public protocol WebViewVisitDelegate: AnyObject {
     func webView(_ webView: WebView, didStartVisitWithIdentifier identifier: String, hasCachedSnapshot: Bool)
     func webView(_ webView: WebView, didStartRequestForVisitWithIdentifier identifier: String)
     func webView(_ webView: WebView, didCompleteRequestForVisitWithIdentifier identifier: String)

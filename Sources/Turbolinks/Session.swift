@@ -1,7 +1,7 @@
 import UIKit
 import WebKit
 
-public protocol SessionDelegate: class {
+public protocol SessionDelegate: AnyObject {
     func session(_ session: Session, didProposeVisitToURL: URL, withAction action: Action)
     func session(_ session: Session, didFailRequestForVisitable visitable: Visitable, withError error: NSError)
     func session(_ session: Session, isLocalURL: URL) -> Bool
@@ -22,7 +22,7 @@ public extension SessionDelegate {
     }
 
     func session(_ session: Session, openExternalURL url: Foundation.URL) {
-        UIApplication.shared.openURL(url)
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 
     func sessionDidStartRequest(_ session: Session) {
@@ -375,7 +375,7 @@ extension Session: WebViewDelegate {
 extension Session: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> ()) {
         let navigationDecision = NavigationDecision(navigationAction: navigationAction)
-        let isSubmitRequest = (navigationAction.navigationType == .formSubmitted || navigationAction.navigationType == .formResubmitted)
+        let isSubmitRequest = (navigationAction.request.httpMethod != "GET") && (navigationAction.navigationType == .formSubmitted || navigationAction.navigationType == .formResubmitted)
         
         if let webView = webView as? WebView {
             webView.isSubmitRequest = isSubmitRequest
