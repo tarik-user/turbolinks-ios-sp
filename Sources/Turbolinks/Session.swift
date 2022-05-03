@@ -382,12 +382,13 @@ extension Session: WKNavigationDelegate {
         }
 
         if isSubmitRequest {
-            decisionHandler(.allow)
-
             // redirect after form submit
             if let url = navigationAction.request.url,
                 ((navigationAction.request.httpMethod == "GET") && (navigationAction.targetFrame?.request.url != navigationAction.request.url)) {
+                decisionHandler(.cancel)
                 delegate?.session(self, didProposeVisitToURL: url, withAction: Action.Replace)
+            } else {
+                decisionHandler(.allow)
             }
         } else {
             let processingURL = (navigationAction.navigationType == .linkActivated || navigationDecision.isMainFrameNavigation) ? navigationAction.request.url : nil
