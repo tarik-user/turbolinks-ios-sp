@@ -12,7 +12,8 @@
         },
 
         domContentLoaded: function() {
-            this.postMessage("DOMContentLoaded")
+            restorationIdentifier = this.controller.restorationIdentifier
+            this.postMessage("DOMContentLoaded", { restorationIdentifier: restorationIdentifier })
         },
 
         errorRaised: function(error) {
