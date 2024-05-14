@@ -11,6 +11,10 @@
             this.postMessageAfterNextRepaint("pageLoaded", { restorationIdentifier: restorationIdentifier })
         },
 
+        domContentLoaded: function() {
+            this.postMessage("DOMContentLoaded")
+        },
+
         errorRaised: function(error) {
             this.postMessage("errorRaised", { error: error })
         },
@@ -110,6 +114,10 @@
     }
 
     this.webView = new WebView(Turbolinks.controller, webkit.messageHandlers.turbolinks)
+
+    addEventListener("adapterDOMContentLoaded", function() {
+        this.webView.domContentLoaded()
+    }.bind(this), true)
 
     addEventListener("error", function(event) {
         var error = event.message + " (" + event.filename + ":" + event.lineno + ":" + event.colno + ")"

@@ -2,6 +2,7 @@ import WebKit
 
 enum ScriptMessageName: String {
     case PageLoaded = "pageLoaded"
+    case DOMContentLoaded = "DOMContentLoaded"
     case ErrorRaised = "errorRaised"
     case VisitProposed = "visitProposed"
     case VisitStarted = "visitStarted"

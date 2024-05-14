@@ -8,6 +8,7 @@ public protocol WebViewDelegate: AnyObject {
 
 public protocol WebViewPageLoadDelegate: AnyObject {
     func webView(_ webView: WebView, didLoadPageWithRestorationIdentifier restorationIdentifier: String)
+    func webView(DOMContentLoadedFor webView: WebView)
 }
 
 public protocol WebViewVisitDelegate: AnyObject {
@@ -129,6 +130,8 @@ extension WebView: WKScriptMessageHandler {
         switch message.name {
         case .PageLoaded:
             pageLoadDelegate?.webView(self, didLoadPageWithRestorationIdentifier: message.restorationIdentifier!)
+        case .DOMContentLoaded:
+            pageLoadDelegate?.webView(DOMContentLoadedFor: self)
         case .PageInvalidated:
             delegate?.webViewDidInvalidatePage(self)
         case .VisitProposed:

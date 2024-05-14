@@ -297,8 +297,11 @@ class ColdBootVisit: Visit, WKNavigationDelegate, WebViewPageLoadDelegate {
 
     func webView(_ webView: WebView, didLoadPageWithRestorationIdentifier restorationIdentifier: String) {
         self.restorationIdentifier = restorationIdentifier
-        delegate?.visitDidRender(self)
         complete()
+    }
+
+    func webView(DOMContentLoadedFor webView: WebView) {
+        delegate?.visitDidRender(self)
     }
 }
 
