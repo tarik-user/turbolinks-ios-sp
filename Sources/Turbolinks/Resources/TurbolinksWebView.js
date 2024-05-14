@@ -115,7 +115,7 @@
 
     this.webView = new WebView(Turbolinks.controller, webkit.messageHandlers.turbolinks)
 
-    addEventListener("adapterDOMContentLoaded", function() {
+    addEventListener("DOMContentLoaded", function() {
         this.webView.domContentLoaded()
     }.bind(this), true)
 
