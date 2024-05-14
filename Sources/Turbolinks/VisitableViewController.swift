@@ -32,6 +32,10 @@ open class VisitableViewController: UIViewController, Visitable {
         self.title = visitableView.webView?.title
     }
 
+    open func visitableDOMCompleted() {
+        
+    }
+
     open func didRedirect(to: URL) {
         self.visitableURL = to
     }

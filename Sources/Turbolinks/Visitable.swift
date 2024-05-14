@@ -15,6 +15,7 @@ public protocol Visitable: AnyObject {
     var withColdBoot: Bool { get }
     var isWebViewVisitable: Bool { get }
     func visitableDidRender()
+    func visitableDOMCompleted()
     func didRedirect(to: URL)
 }
 

@@ -248,11 +248,14 @@ extension Session: VisitDelegate {
         visit.visitable.visitableDidRender()
     }
 
-    func visitDidComplete(_ visit: Visit) {
+    func visitDOMCompleted(_ visit: Visit) {
         if let restorationIdentifier = visit.restorationIdentifier {
             storeRestorationIdentifier(restorationIdentifier, forVisitable: visit.visitable)
         }
+        visit.visitable.visitableDOMCompleted()
     }
+
+    func visitDidComplete(_ visit: Visit) {}
 
     func visitDidFail(_ visit: Visit) {
         visit.visitable.clearVisitableScreenshot()

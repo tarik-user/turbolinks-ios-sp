@@ -12,6 +12,7 @@ protocol VisitDelegate: AnyObject {
 
     func visitWillLoadResponse(_ visit: Visit)
     func visitDidRender(_ visit: Visit)
+    func visitDOMCompleted(_ visit: Visit)
 
     func visitRequestDidStart(_ visit: Visit)
     func visit(_ visit: Visit, requestDidFailWithError error: NSError)
@@ -297,11 +298,13 @@ class ColdBootVisit: Visit, WKNavigationDelegate, WebViewPageLoadDelegate {
 
     func webView(_ webView: WebView, didLoadPageWithRestorationIdentifier restorationIdentifier: String) {
         self.restorationIdentifier = restorationIdentifier
-        complete()
+        delegate?.visitDidRender(self)
     }
 
-    func webView(DOMContentLoadedFor webView: WebView) {
-        delegate?.visitDidRender(self)
+    func webView(_ webView: WebView, DOMContentLoadedWithRestorationIdentifier restorationIdentifier: String) {
+        self.restorationIdentifier = restorationIdentifier
+        delegate?.visitDOMCompleted(self)
+        complete()
     }
 }
 
