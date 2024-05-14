@@ -21,7 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		55B6747C27091C29004F083A /* WebView.js in Resources */ = {isa = PBXBuildFile; fileRef = 55B6747A27091BD8004F083A /* WebView.js */; };
+		558DEFB82ACD6E9C00B27AC5 /* TurbolinksWebView.js in Resources */ = {isa = PBXBuildFile; fileRef = 558DEFB72ACD6E9C00B27AC5 /* TurbolinksWebView.js */; };
 		OBJ_31 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Action.swift */; };
 		OBJ_32 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Error.swift */; };
 		OBJ_33 /* ScriptMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* ScriptMessage.swift */; };
@@ -54,7 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		55B6747A27091BD8004F083A /* WebView.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = WebView.js; sourceTree = "<group>"; };
+		558DEFB72ACD6E9C00B27AC5 /* TurbolinksWebView.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = TurbolinksWebView.js; sourceTree = "<group>"; };
 		OBJ_10 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		OBJ_11 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		OBJ_12 /* ScriptMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptMessage.swift; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 		55B6747927091BD8004F083A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				55B6747A27091BD8004F083A /* WebView.js */,
+				558DEFB72ACD6E9C00B27AC5 /* TurbolinksWebView.js */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -125,7 +125,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -134,7 +134,6 @@
 				OBJ_22 /* Products */,
 				OBJ_25 /* README.md */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -231,7 +230,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_22 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -249,7 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55B6747C27091C29004F083A /* WebView.js in Resources */,
+				558DEFB82ACD6E9C00B27AC5 /* TurbolinksWebView.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,7 +25,7 @@ let package = Package(
             name: "Turbolinks",
             dependencies: [],
             exclude: ["Info.plist"],
-            resources: [.copy("Resources/WebView.js")]
+            resources: [.copy("Resources/TurbolinksWebView.js")]
         ),
         .testTarget(
             name: "TurbolinksTests",
